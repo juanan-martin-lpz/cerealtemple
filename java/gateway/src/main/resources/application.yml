@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: tipos-precio
+        uri: lb://gestion-precios
+        predicates:
+        - Path=/gestion/cereales/**
+        filters:
+        - StripPrefix=2
+
+          
