@@ -1,0 +1,26 @@
+<div class="container">
+    <h2> Tamaños</h2>
+
+    <div class="button-row">
+        <input type="text" [(ngModel)]="tamanio" id="tamanio">
+        <button mat-flat-button color="primary">Guardar</button>
+        <button mat-flat-button color="warn">Borrar</button>
+    </div>
+
+    <mat-table [dataSource]="listaTamanios" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="idtamanio">
+            <mat-header-cell *matHeaderCellDef> Id. </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.idtamanio}} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="nombre">
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row (click)="selectRow(row)" [class.select-row]="selectedRow === row" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+</div>

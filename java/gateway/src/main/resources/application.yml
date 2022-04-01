@@ -1,12 +1,26 @@
 spring:
   cloud:
     gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+              allowedOrigins: "*"
+              allowedMethods: "*"
+              allowedHeaders: "*"
       routes:
-      - id: tipos-precio
-        uri: lb://gestion-precios
+      - id: servicio-mantenimientos
+        uri: lb://servicio-mantenimientos
         predicates:
-        - Path=/gestion/cereales/**
+        - Path=/gestion/mantenimientos/**
         filters:
         - StripPrefix=2
+      - id: cereales
+        uri: lb://servicio-cereales
+        predicates:
+        - Path=/gestion/**
+        filters:
+        - StripPrefix=1
 
           
