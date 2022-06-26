@@ -11,6 +11,6 @@ public interface ITamanioService {
 	
 	public Tamanio nuevo(Tamanio precio);
 	public void borrar(int id);
-	public Tamanio modificar(long id, Tamanio tamanio);
+	public Tamanio modificar(int id, Tamanio tamanio);
 	
 }

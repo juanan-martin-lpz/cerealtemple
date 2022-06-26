@@ -1,15 +1,14 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
-const path = require('path');
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
-    basePath: '.',
+    basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
-      require('karma-junit-reporter'),
+      require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
@@ -20,30 +19,25 @@ module.exports = function(config) {
         // for example, you can disable the random execution with `random: false`
         // or set a specific seed with `seed: 4321`
       },
-      clearContext: false, // leave Jasmine Spec Runner output visible in browser
-      captureConsole: Boolean(process.env.KARMA_ENABLE_CONSOLE)
+      clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    junitReporter: {
-      outputDir: path.join(__dirname, './reports/junit/'),
-      outputFile: 'TESTS-xunit.xml',
-      useBrowserName: false,
-      suite: '' // Will become the package name attribute in xml testsuite element
+    jasmineHtmlReporter: {
+      suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/ng13'),
+      dir: require('path').join(__dirname, './coverage/mantenimientos'),
       subdir: '.',
       reporters: [
         { type: 'html' },
         { type: 'text-summary' }
       ]
     },
-    reporters: ['progress', 'junit'],
+    reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
-    // Level of logging, can be: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['ChromeHeadless'],
+    browsers: ['Chrome'],
     singleRun: false,
     restartOnFileChange: true
   });

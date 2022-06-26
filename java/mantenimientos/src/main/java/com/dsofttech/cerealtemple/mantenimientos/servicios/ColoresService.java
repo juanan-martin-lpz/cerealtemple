@@ -1,6 +1,7 @@
 package com.dsofttech.cerealtemple.mantenimientos.servicios;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,14 +34,27 @@ public class ColoresService implements IColoresService {
 
 	@Override
 	public void borrar(long id) {
-		// TODO Auto-generated method stub
+		
+		this.dao.deleteById(id);
 		
 	}
 
 	@Override
 	public Color modificar(long id, Color color) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Optional<Color> op_co = this.dao.findById(id);
+		
+		if (op_co.isPresent()) {
+			Color co = op_co.get();
+			
+			co.setNombre(color.getNombre());
+			
+			return this.dao.save(co);
+			
+		}
+		else {
+			return null;
+		}
 	}
 
 	@Override

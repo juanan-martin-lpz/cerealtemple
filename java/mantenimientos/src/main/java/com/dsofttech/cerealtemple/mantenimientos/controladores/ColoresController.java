@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,7 +72,7 @@ public class ColoresController {
 	}
 	
 	@PostMapping("/new")
-	public ResponseEntity<?> nuevPrecioTamanio(@RequestBody Color color, BindingResult br) {
+	public ResponseEntity<?> nuevoColor(@RequestBody Color color, BindingResult br) {
 		
 		log.info(color.toString());
 		
@@ -89,5 +90,22 @@ public class ColoresController {
 		return responseEntity;	
 	}
 
+	@PutMapping("/update/{id}")
+	public ResponseEntity<?> actualizaColor(@PathVariable("id") int id, @RequestBody Color color, BindingResult br) {
+		
+		ResponseEntity<?> responseEntity = null;
+
+		Color c = null;
+
+		if (br.hasErrors()) {
+			return ResponseEntity.status(500).build();
+		} else {
+
+			c = servicio.modificar(id, color);
+			responseEntity = ResponseEntity.status(HttpStatus.OK).body(c);
+		}
+
+		return responseEntity;	
+	}
 
 }

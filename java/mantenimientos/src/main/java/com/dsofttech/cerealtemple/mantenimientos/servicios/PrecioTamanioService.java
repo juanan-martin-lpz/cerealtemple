@@ -1,6 +1,7 @@
 package com.dsofttech.cerealtemple.mantenimientos.servicios;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,8 +61,24 @@ public class PrecioTamanioService implements IPrecioTamanioService {
 
 	@Override
 	public PrecioTamanio modificar(long id, PrecioTamanio precio) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<PrecioTamanio> op_pt = this.dao.findById(id);
+		
+		if (op_pt.isPresent()) {
+			PrecioTamanio pt = op_pt.get();
+			
+			pt.setPrecio(precio.getPrecio());
+			// Validar si el Tamanio existe en la tabla
+			pt.setTamanio(precio.getTamanio());
+			// Validar si el Tipo existe en la tabla			
+			pt.setTipoprecio(precio.getTipoprecio());
+			
+			return this.dao.save(pt);
+			
+		}
+		else {
+			return null;
+		}
+
 	}
 
 }

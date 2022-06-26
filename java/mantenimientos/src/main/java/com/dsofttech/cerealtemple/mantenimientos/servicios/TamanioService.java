@@ -1,6 +1,7 @@
 package com.dsofttech.cerealtemple.mantenimientos.servicios;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,14 +34,27 @@ public class TamanioService implements ITamanioService {
 
 	@Override
 	public void borrar(int id) {
-		// TODO Auto-generated method stub
+		
+		this.dao.deleteById(id);
 		
 	}
 
 	@Override
-	public Tamanio modificar(long id, Tamanio tamanio) {
-		// TODO Auto-generated method stub
-		return null;
+	public Tamanio modificar(int id, Tamanio tamanio) {
+		
+		Optional<Tamanio> op_ta = this.dao.findById(id);
+		
+		if (op_ta.isPresent()) {
+			Tamanio ta = op_ta.get();
+			
+			ta.setNombre(tamanio.getNombre());
+			
+			return this.dao.save(ta);
+			
+		}
+		else {
+			return null;
+		}
 	}
 
 

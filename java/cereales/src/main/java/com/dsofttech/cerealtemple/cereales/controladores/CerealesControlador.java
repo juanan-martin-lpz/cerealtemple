@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.dsofttech.cerealtemple.cereales.IPreciosFeignClient;
 import com.dsofttech.cerealtemple.cereales.entidades.Cereal;
@@ -75,7 +76,7 @@ public class CerealesControlador {
 	}
 	
 	@PostMapping("/new")
-	public ResponseEntity<?> nuevoCereal(@RequestBody Cereal cereal, BindingResult br) {
+	public ResponseEntity<?> nuevoCereal(@RequestBody Cereal cereal, @RequestBody MultipartFile file, BindingResult br) {
 		
 		log.info(cereal.toString());
 		
@@ -91,13 +92,13 @@ public class CerealesControlador {
 			return ResponseEntity.status(500).build();
 		} else {
 
-			c = servicio.nuevo(cereal);
+			c = servicio.nuevo(cereal, file);
 			responseEntity = ResponseEntity.status(HttpStatus.CREATED).body(c);
 		}
 
 		return responseEntity;	
 	}
-
+	
 	private boolean validatePrecio(long precio) {
 		
 		Object response = this.preciosClient.obtenerPorIdP(precio);

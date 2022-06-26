@@ -5,8 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
@@ -27,8 +29,9 @@ public class Cereal {
 	@Column(columnDefinition = "TEXT")
 	private String descripcion;
 	
-	@Column(length=255)
-	private String imagen;
+	@Lob
+	@JsonIgnore
+	private byte[]imagen;
 	
 	private long precio;
 

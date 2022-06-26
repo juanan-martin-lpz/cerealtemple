@@ -1,6 +1,7 @@
 package com.dsofttech.cerealtemple.mantenimientos.servicios;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,14 +33,25 @@ public class TipoPrecioService implements ITipoPrecioService {
 
 	@Override
 	public void borrar(long id) {
-		// TODO Auto-generated method stub
-		
+		this.dao.deleteById(id);
 	}
 
 	@Override
 	public Precio modificar(long id, Precio precio) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Optional<Precio> op_pr = this.dao.findById(id);
+		
+		if (op_pr.isPresent()) {
+			Precio pr = op_pr.get();
+			
+			pr.setTipo_precio(precio.getTipo_precio());
+			
+			return this.dao.save(precio);
+			
+		}
+		else {
+			return null;
+		}
 	}
 
 }

@@ -3,6 +3,7 @@ package com.dsofttech.cerealtemple.mantenimientos.entidades;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,11 +30,11 @@ public class PrecioTamanio implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idprecio_tamanio;
 
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="idprecio", referencedColumnName = "idprecio", nullable=false)
 	private Precio tipoprecio;
 	
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "idtamanio", referencedColumnName = "idtamanio", nullable=false)
 	private Tamanio tamanio;
 	
