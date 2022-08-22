@@ -74,8 +74,6 @@ public class ColoresController {
 	@PostMapping("/new")
 	public ResponseEntity<?> nuevoColor(@RequestBody Color color, BindingResult br) {
 		
-		log.info(color.toString());
-		
 		ResponseEntity<?> responseEntity = null;
 		Color c = null;
 

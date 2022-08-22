@@ -78,10 +78,7 @@ public class CerealesControlador {
 	@PostMapping("/new")
 	public ResponseEntity<?> nuevoCereal(@RequestBody Cereal cereal, @RequestBody MultipartFile file, BindingResult br) {
 		
-		log.info(cereal.toString());
-		
 		if (!this.validatePrecio(cereal.getPrecio())) {
-			log.info("Tipo de Precio no valido");
 			return ResponseEntity.status(500).build();			
 		}
 		

@@ -73,7 +73,6 @@ public class PreciosTamanioController {
 	@PostMapping("/new")
 	public ResponseEntity<?> nuevPrecioTamanio(@RequestBody PrecioTamanio precio, BindingResult br) {
 		
-		log.info(precio.toString());
 		
 		ResponseEntity<?> responseEntity = null;
 		PrecioTamanio p = null;

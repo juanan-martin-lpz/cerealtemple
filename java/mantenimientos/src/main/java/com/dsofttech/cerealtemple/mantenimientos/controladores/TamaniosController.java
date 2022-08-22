@@ -73,8 +73,6 @@ public class TamaniosController {
 	@PostMapping("/new")
 	public ResponseEntity<?> nuevPrecioTamanio(@RequestBody Tamanio tamanio, BindingResult br) {
 		
-		log.info(tamanio.toString());
-		
 		ResponseEntity<?> responseEntity = null;
 		Tamanio p = null;
 
