@@ -1,0 +1,19 @@
+.chipinput {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 2rem;
+}
+
+.chipinput label {
+  width: 70px;
+  text-align: center;
+  align-self: center;
+}
+
+.chipinput:first-child {
+  margin-top: 2rem;
+}
+
+p-chips {
+  width: 90%;
+}

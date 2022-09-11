@@ -4,17 +4,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AppComponent } from './app.component';
-import { TopPanelComponent } from './layout/top-panel/top-panel.component';
-import { FooterPanelComponent } from './layout/footer-panel/footer-panel.component';
-import { MenuComponent } from './common/menu/menu.component';
-
 import { routing } from './app.routing';
-import { DashboardComponent } from './negocio/dashboard/dashboard.component';
 
 // Primeng imports
 import {Menubar, MenubarModule} from 'primeng/menubar';
 import {MenuItem} from 'primeng/api';
+import {ChipsModule} from 'primeng/chips';
+
+// Componentes
+import { MantenimientosComponent } from './negocio/mantenimientos/mantenimientos.component';
+import { AppComponent } from './app.component';
+import { TopPanelComponent } from './layout/top-panel/top-panel.component';
+import { FooterPanelComponent } from './layout/footer-panel/footer-panel.component';
+import { MenuComponent } from './common/menu/menu.component';
+import { DashboardComponent } from './negocio/dashboard/dashboard.component';
+
+
+// Servicios
+import { ColoresService } from './services/colores.service';
 
 @NgModule({
   declarations: [
@@ -22,6 +29,7 @@ import {MenuItem} from 'primeng/api';
     TopPanelComponent,
     FooterPanelComponent,
     MenuComponent,
+    MantenimientosComponent,
     DashboardComponent
    ],
   imports: [
@@ -30,7 +38,8 @@ import {MenuItem} from 'primeng/api';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MenubarModule
+    MenubarModule,
+    ChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -19,10 +19,7 @@ export class MenuComponent implements OnInit {
       {
           label: 'Mantenimientos',
           items: [
-              {label: 'Tipos de Precio'},
-              {label: 'Tamanios'},
-              {label: 'Precios por Tamanio'},
-              {label: 'Colores'}
+            {label: 'Mantenimientos', routerLink: '/mantenimientos'},
           ]
       },
       {
