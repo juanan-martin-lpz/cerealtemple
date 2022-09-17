@@ -2,12 +2,14 @@
 
   <div class="chipinput">
     <label for="colores">Colores</label>
-    <p-chips id="colores" [(ngModel)]="colores"></p-chips>
+    <p-chips id="colores" [(ngModel)]="asColores" (onAdd)="addColor($event)" (onRemove)="removeColor($event)"></p-chips>
   </div>
 
   <div class="chipinput">
     <label for="tamanios">Tamaños</label>
-    <p-chips id="tamanios" [(ngModel)]="tamanios"></p-chips>
+    <p-chips id="tamanios" [(ngModel)]="tamanios" field="nombre"></p-chips>
   </div>
 
 </div>
+
+<p-toast position="bottom-right"></p-toast>

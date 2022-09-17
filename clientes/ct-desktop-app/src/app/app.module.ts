@@ -3,6 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { routing } from './app.routing';
 
@@ -10,6 +11,7 @@ import { routing } from './app.routing';
 import {Menubar, MenubarModule} from 'primeng/menubar';
 import {MenuItem} from 'primeng/api';
 import {ChipsModule} from 'primeng/chips';
+import {ToastModule} from 'primeng/toast';
 
 // Componentes
 import { MantenimientosComponent } from './negocio/mantenimientos/mantenimientos.component';
@@ -34,12 +36,14 @@ import { ColoresService } from './services/colores.service';
    ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     routing,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     MenubarModule,
-    ChipsModule
+    ChipsModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]
