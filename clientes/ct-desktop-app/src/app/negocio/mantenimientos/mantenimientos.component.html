@@ -1,15 +1,27 @@
-<div class="p-fluid">
-
-  <div class="chipinput">
-    <label for="colores">Colores</label>
+<div class="formgrid grid mt-8 mx-5">
+  <div class="field col">
+    <label>Colores</label>
     <p-chips id="colores" [(ngModel)]="asColores" (onAdd)="addColor($event)" (onRemove)="removeColor($event)"></p-chips>
   </div>
 
-  <div class="chipinput">
-    <label for="tamanios">Tamaños</label>
-    <p-chips id="tamanios" [(ngModel)]="tamanios" field="nombre"></p-chips>
+  <div class="field col">
+    <label>Tamaños</label>
+    <p-chips id="tamanios" [(ngModel)]="asTamanios" (onAdd)="addTamanio($event)" (onRemove)="removeTamanio($event)"></p-chips>
+  </div>
+</div>
+
+<div class="formgrid grid">
+
+  <div class="col">
+
+  </div>
+
+  <div class="col">
+    <p-dropdown [options]="cities" [(ngModel)]="asTiposPrecio" optionLabel="name"></p-dropdown>
+    <p-dropdown [options]="cities" [(ngModel)]="asTamanios" optionLabel="name"></p-dropdown>
   </div>
 
 </div>
+
 
 <p-toast position="bottom-right"></p-toast>

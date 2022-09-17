@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -93,8 +94,8 @@ public class ColoresController {
 		
 		ResponseEntity<?> responseEntity = null;
 
-		Color c = null;
-
+		Color c = this.servicio.modificar(id, color);
+		
 		if (br.hasErrors()) {
 			return ResponseEntity.status(500).build();
 		} else {
@@ -105,5 +106,23 @@ public class ColoresController {
 
 		return responseEntity;	
 	}
+	
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<?> borrarColor(@PathVariable("id") int id) {
+		
+		ResponseEntity<?> responseEntity = null;
+
+		log.debug("Borrando ");
+
+		try {
+			Color c = this.servicio.borrar(id);
+			return ResponseEntity.status(HttpStatus.OK).body(c);
+		}
+		catch(Exception e) {
+			return ResponseEntity.status(500).build();
+		}
+		
+	}
+	
 
 }

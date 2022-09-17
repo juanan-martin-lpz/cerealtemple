@@ -29,7 +29,14 @@ export class TamaniosService {
   }
 
   public modificarTamanio(tamanio: Tamanios): Observable<Tamanios> {
-    return this.http.put<Tamanios>(`${environment.server}gestion/mantenimientos/colores/edit`, tamanio);
+    return this.http.put<Tamanios>(`${environment.server}gestion/mantenimientos/tamanios/edit`, tamanio);
   }
 
+
+
+  public borrarTamanio(id: number): Observable<Tamanios> {
+
+    return this.http.delete<Tamanios>(`${environment.server}gestion/mantenimientos/tamanios/delete/${id}`);
+
+  }
 }

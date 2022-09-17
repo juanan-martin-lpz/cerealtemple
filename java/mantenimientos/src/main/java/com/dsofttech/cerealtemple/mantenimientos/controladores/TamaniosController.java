@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dsofttech.cerealtemple.mantenimientos.entidades.Color;
 import com.dsofttech.cerealtemple.mantenimientos.entidades.Tamanio;
 import com.dsofttech.cerealtemple.mantenimientos.servicios.ITamanioService;
 
@@ -87,5 +89,21 @@ public class TamaniosController {
 		return responseEntity;	
 	}
 
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<?> borrarColor(@PathVariable("id") int id) {
+		
+		ResponseEntity<?> responseEntity = null;
+
+		log.debug("Borrando ");
+
+		try {
+			Tamanio t = this.servicio.borrar(id);
+			return ResponseEntity.status(HttpStatus.OK).body(t);
+		}
+		catch(Exception e) {
+			return ResponseEntity.status(500).build();
+		}
+		
+	}
 
 }

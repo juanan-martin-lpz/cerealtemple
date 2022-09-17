@@ -33,10 +33,13 @@ public class ColoresService implements IColoresService {
 	}
 
 	@Override
-	public void borrar(long id) {
+	public Color borrar(long id) {
+		
+		Color color = this.dao.getById(id);
 		
 		this.dao.deleteById(id);
 		
+		return color;
 	}
 
 	@Override

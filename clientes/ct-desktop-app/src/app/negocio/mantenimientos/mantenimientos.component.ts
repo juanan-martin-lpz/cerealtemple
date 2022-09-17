@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
+
+import { tap } from 'rxjs';
+
 import { Leche } from 'src/app/models/leche.model';
 import { Precios } from 'src/app/models/precios.model';
 import { Tamanios } from 'src/app/models/tamanios.model';
@@ -25,7 +28,6 @@ export class MantenimientosComponent implements OnInit {
 
   public colores: string[] = [];
   public tamanios: string[] = [];
-
 
   public aColores: Colores[] = [];
   public aTamanios: Tamanios[] = [];
@@ -95,7 +97,42 @@ export class MantenimientosComponent implements OnInit {
 
   removeColor(event: any) {
 
+    let idColor = this.aColores.filter(item => item.nombre == event.value)[0].idcolor;
+
     this.aColores = this.aColores.filter(item => item.nombre != event.value)
 
+    this.coloresSvc.borrarColor(idColor)
+      .subscribe(item => {
+        this.messageSvc.add({severity:'success', summary:'Borrado', detail:'Color borrado con exito'});
+      })
   }
+
+
+  addTamanio(event: any) {
+
+
+    let tamanio = new Tamanios();
+
+    tamanio.nombre = event.value;
+
+    this.aTamanios.push(tamanio);
+
+    this.tamaniosSvc.insertarTamanio(tamanio).subscribe(tamanio => {
+      this.messageSvc.add({severity:'success', summary:'Guardado', detail:'Tamaño guardado con exito'});
+    })
+  }
+
+
+  removeTamanio(event: any) {
+
+    let idTamanio= this.aTamanios.filter(item => item.nombre == event.value)[0].idtamanio;
+
+    this.aTamanios = this.aTamanios.filter(item => item.nombre != event.value)
+
+    this.tamaniosSvc.borrarTamanio(idTamanio)
+      .subscribe(item => {
+        this.messageSvc.add({severity:'success', summary:'Borrado', detail:`Tamaño ${item.nombre} borrado con exito`});
+      })
+  }
+
 }

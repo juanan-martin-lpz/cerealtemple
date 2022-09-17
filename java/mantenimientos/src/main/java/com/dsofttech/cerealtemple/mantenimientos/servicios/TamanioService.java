@@ -33,9 +33,11 @@ public class TamanioService implements ITamanioService {
 	}
 
 	@Override
-	public void borrar(int id) {
+	public Tamanio borrar(int id) {
 		
+		Tamanio t = this.dao.getById(id);
 		this.dao.deleteById(id);
+		return t;
 		
 	}
 

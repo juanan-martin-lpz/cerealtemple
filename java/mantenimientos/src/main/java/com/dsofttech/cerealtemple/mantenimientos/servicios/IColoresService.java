@@ -12,7 +12,7 @@ public interface IColoresService {
 	public Color obtenerPorNombre(String nombre);
 	
 	public Color nuevo(Color color);
-	public void borrar(long id);
+	public Color borrar(long id);
 	public Color modificar(long id, Color color);
 
 }

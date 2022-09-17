@@ -10,7 +10,7 @@ public interface ITamanioService {
 	public Tamanio obtenerPorId(int id);
 	
 	public Tamanio nuevo(Tamanio precio);
-	public void borrar(int id);
+	public Tamanio borrar(int id);
 	public Tamanio modificar(int id, Tamanio tamanio);
 	
 }
