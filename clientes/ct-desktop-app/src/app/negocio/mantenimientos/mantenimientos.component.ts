@@ -40,6 +40,8 @@ export class MantenimientosComponent implements OnInit {
   public asTamanios: string[] = [];
   public asTipoPrecios: string[] = [];
 
+  public newTipoPrecio: number = 0;
+  public newTamanio: number = 0;
 
   constructor(private coloresSvc: ColoresService,
               private tamaniosSvc: TamaniosService,

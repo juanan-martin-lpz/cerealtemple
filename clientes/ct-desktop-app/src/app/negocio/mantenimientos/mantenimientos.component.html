@@ -17,8 +17,8 @@
   </div>
 
   <div class="col">
-    <p-dropdown [options]="cities" [(ngModel)]="asTiposPrecio" optionLabel="name"></p-dropdown>
-    <p-dropdown [options]="cities" [(ngModel)]="asTamanios" optionLabel="name"></p-dropdown>
+    <p-dropdown placeholder="Seleccione Tipo" [options]="aTipoPrecios" [(ngModel)]="newTipoPrecio" optionLabel="tipo_precio" optionValue="idprecio"></p-dropdown>
+    <p-dropdown placeholder="Seleccione Tamaño" [options]="aTamanios" [(ngModel)]="newTamanio" optionLabel="nombre" optionValue="idtamanio"></p-dropdown>
   </div>
 
 </div>
